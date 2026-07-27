@@ -162,8 +162,22 @@ sudo chown alice:developers report.txt
 Ctrl + R performs a reverse incremental search through your shell command history. It searches previously executed commands as you type, allowing you to quickly find and reuse old commands.
 
 Instead of scrolling through hundreds of commands, you can search by entering part of a command.
+How to Use
+Press Ctrl + R.
+Type part of a previous command.
+The shell displays the most recent matching command.
+Press Enter to execute it or use the arrow keys to edit it before execution.
+
+
+**Arrow Keys**
+
+The Up and Down arrow keys allow you to navigate through your command history.  
+
+**Tab Autocompletion**
+
+The Tab key automatically completes file names, directory names, and commands.
+
+It helps avoid typing mistakes and speeds up command entry.
 
 
 
-References :
-Q1 : https://simplicable.com/IT/application-vs-service, https://superuser.com/questions/1064402/what-is-the-difference-between-a-service-and-an-application
