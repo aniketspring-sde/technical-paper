@@ -21,4 +21,19 @@
 
 ### Q2: What are these wildcards ~, ., .., * and ??
 
-**WildCard** : 
+**WildCard** : A wildcard is a special character used in the shell to match one or more filenames or directory names based on a pattern, instead of specifying the exact name.
+
+Think of a wildcard as a placeholder that stands for unknown characters.
+
+
+
+
+
+
+
+
+
+
+
+References :
+Q1 : https://simplicable.com/IT/application-vs-service, https://superuser.com/questions/1064402/what-is-the-difference-between-a-service-and-an-application
