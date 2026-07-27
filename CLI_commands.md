@@ -19,6 +19,9 @@
 | **Examples**         | Web server, database server, SSH server.                                                    | Web browser, text editor, media player, calculator.                   |
 
 
+<br>
+<br>
+
 ### Q2: What are these wildcards ~, ., .., * and ? ?
 
 **WildCard** : A wildcard is a special character used in the shell to match one or more filenames or directory names based on a pattern, instead of specifying the exact name.
@@ -42,11 +45,53 @@ output : /home/xull/Downloads
 
   **'..' (Parent Directory):** This '..' symbol represents the parent directory of current working directory (one level above the current directory).
 
-**example** input pwd output: /home/aniket/Documents/Projects
+**example** input pwd  
+output: /home/aniket/Documents/Projects
  input: cd..
 
  input: pwd 
  output: /home/aniket/Documents
+
+ <br>
+ <br>
+
+ **'*'(Asterisk Wildcard)**: This '*' (Asterisk Wildcard) wildcard matches zero or more characters.
+
+ **examples**
+
+
+input: ls *.txt
+
+output:
+notes.txt  
+report.txt  
+hello.txt  
+
+**'?' (Question Mark Wildcard):** This '?'  wildcard matches only one characters.
+**example**  
+suppose the directory contains:  
+
+a.txt  
+b.txt  
+ab.txt  
+abc.txt  
+1.txt  
+
+Ccommand:  
+
+ls ?.txt  
+
+matches:  
+
+a.txt  
+b.txt  
+1.txt  
+
+does not match:  
+
+ab.txt  
+abc.txt  
+ 
 
 
 
