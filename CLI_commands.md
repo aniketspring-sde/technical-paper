@@ -19,15 +19,34 @@
 | **Examples**         | Web server, database server, SSH server.                                                    | Web browser, text editor, media player, calculator.                   |
 
 
-### Q2: What are these wildcards ~, ., .., * and ??
+### Q2: What are these wildcards ~, ., .., * and ? ?
 
 **WildCard** : A wildcard is a special character used in the shell to match one or more filenames or directory names based on a pattern, instead of specifying the exact name.
 
-Think of a wildcard as a placeholder that stands for unknown characters.
+
+**'~'(Home Directory)** : This '~' symbol represents the home directory of the current user.
+
+**example:**
+input : echo ~ 
+output : /home/xull 
+
+input : ~/Downloads
+output : /home/xull/Downloads
 
 
+**'.' (Current Directory)**: This '.' symbol represents the current working directory.
 
 
+**example** input: ls .
+  output : Desktop  Documents  Downloads  Music  Pictures  Public  PyCharmMiscProject  Templates  Videos  idea  snap  webstorm
+
+  **'..' (Parent Directory):** This '..' symbol represents the parent directory of current working directory (one level above the current directory).
+
+**example** input pwd output: /home/aniket/Documents/Projects
+ input: cd..
+
+ input: pwd 
+ output: /home/aniket/Documents
 
 
 
