@@ -27,7 +27,7 @@
 **WildCard** : A wildcard is a special character used in the shell to match one or more filenames or directory names based on a pattern, instead of specifying the exact name.
 
 
-**'~'(Home Directory)** : This '~' symbol represents the home directory of the current user.
+**'~'(Tilde)** : This '~' symbol represents the home directory of the current user.
 
 **example:**
 input : echo ~ 
