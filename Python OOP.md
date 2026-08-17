@@ -586,7 +586,7 @@ D.__mro__
 
 ---
 
-## B4.3 Diamond problem
+## Diamond problem
 
 ```text
        A
@@ -1251,4 +1251,28 @@ class UPIProcessor(PaymentProcessor):
 ```
 
 This uses **nominal typing**: the class explicitly participates in the hierarchy.
+
+## Protocol
+
+```python
+from typing import Protocol
+
+
+class Payable(Protocol):
+
+    def pay(self, amount):
+        ...
+```
+
+A class can satisfy the protocol without inheriting from it:
+
+```python
+class UPI:
+    def pay(self, amount):
+        return f"Paid {amount}"
+```
+
+This is **structural typing**.
+
+
 
