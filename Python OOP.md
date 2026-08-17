@@ -96,5 +96,64 @@ needs `self` because Python passes the instance to the method.
 
 ---
 
+## A4. Object creation: `__new__` vs `__init__`
+
+When we write:
+
+```python
+d = Dog("Rex", 3)
+```
+
+Python internally performs:
+
+```python
+d = Dog.__new__(Dog, "Rex", 3)
+Dog.__init__(d, "Rex", 3)
+```
+
+The exact call mechanics include arguments passed to `__new__`, but the key conceptual sequence is:
+
+1. `__new__` creates the object.
+2. `__init__` initializes the object.
+
+### `__new__`
+
+```python
+class Demo:
+    def __new__(cls):
+        print("__new__ called")
+        return super().__new__(cls)
+
+    def __init__(self):
+        print("__init__ called")
+
+
+d = Demo()
+```
+
+Output:
+
+```text
+__new__ called
+__init__ called
+```
+
+### `__init__`
+
+`__init__` should initialize an already-created instance.
+
+It should not return a different object.
+
+```python
+class Demo:
+    def __init__(self):
+        return 10
+```
+
+This raises `TypeError`.
+
+> `__new__` is responsible for creating and returning an instance, while `__init__` initializes that instance after it has been created.
+
+---
 
 
