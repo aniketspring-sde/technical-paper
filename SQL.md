@@ -140,3 +140,21 @@ HAVING AVG(salary) > 70000;
 ```
 
 - ROLLBACK cancels the changes made during the transaction.
+
+## Database Isolation Levels
+- Database isolation levels define how concurrent transactions interact to maintain data consistency and integrity. As part of the ACID properties, isolation ensures each transaction acts independently.
+#### Phenomena Defining Database Isolation Levels:
+
+- These phenomena determine how transactions interact and where data inconsistencies may occur:
+   
+   - Dirty read - It happens when a transaction reads data that has been modified by another transaction but not yet committed.
+   - Non-repeatable read - This occurs when a transaction reads the same data twice and gets different results because another transaction updated it in between.
+   - Phantom read - This one happens when new rows are inserted by another transaction, so the result of a query changes when it is executed again.
+#### There are four standard isolation levels: 
+  -  Read Uncommitted is placed at the lowest level because, as fast as it works, it becomes unreliable too. You might have to look out for all three here: the dirty, non-repeatable, and phantom read.
+  - Read Committed can be found as the default in many systems, like PostgreSQL. It prevents dirty reads for sure, but still struggles with non-repeatable and phantom reads.
+  - Repeatable Read successfully prevents dirty reads and non-repeatable reads, but you must be careful with phantom reads here. Also, this is the default in SQL.
+  - Serializable is placed at the highest level since it tackles with ALL the problems. It provides the highest consistency but is the slowest because it restricts concurrency the most.
+
+
+
