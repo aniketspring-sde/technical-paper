@@ -157,4 +157,35 @@ HAVING AVG(salary) > 70000;
   - Serializable is placed at the highest level since it tackles with ALL the problems. It provides the highest consistency but is the slowest because it restricts concurrency the most.
 
 
+## Triggers
+- A trigger in SQL is a special stored procedure that runs automatically when an INSERT, UPDATE or DELETE operation occurs on a table. It helps automate actions and keep data consistent.
+
+##### Types of SQL Triggers :
+
+Triggers can be categorized into different types based on the action they are associated with:
+
+-  DDL Triggers    
+
+   - Data Definition Language (DDL) triggers run when commands like CREATE, ALTER or DROP are used. They help track or stop changes to the database structure, such as creating, modifying or deleting tables.
+
+- DML Triggers
+
+  - DML triggers fire when we manipulate data with commands like INSERT, UPDATE or DELETE. These triggers are perfect for scenarios where we need to validate data before it is inserted, log changes to a table or cascade updates across related tables.
+
+- Logon Triggers
+
+  - Logon triggers run when a user logs in. They are used to track logins, control access and limit sessions. Messages from these triggers are stored in the SQL Server error log.
+
+
+
+
+
+
+
+
+
+
+
+
+
 
