@@ -13,16 +13,29 @@
    COUNT(), SUM(), AVG(), MIN(), MAX()
 
 ## Filters
-- Filtering means selecting only rows that satisfy a required condition.
-  #### Filtering clause
-  - WHERE, HAVING, IN, BETWEEN, LIKE, IS NULL, NOT NULL
-  #### Filtering Operators
-  - =
-  - >
-  - <
-  - >=
-  - <=
-  - <>
+
+Filtering means selecting only the rows that satisfy a specified condition.
+
+### Filtering Clauses
+
+- `WHERE` – Filters rows before grouping.
+- `HAVING` – Filters groups after `GROUP BY`.
+- `IN` – Matches a value against a list of values.
+- `BETWEEN` – Filters values within a specified range.
+- `LIKE` – Searches for a specified pattern.
+- `IS NULL` – Checks whether a value is `NULL`.
+- `IS NOT NULL` – Checks whether a value is not `NULL`.
+
+### Filtering Operators
+
+| Operator | Description |
+|---|---|
+| `=` | Equal to |
+| `>` | Greater than |
+| `<` | Less than |
+| `>=` | Greater than or equal to |
+| `<=` | Less than or equal to |
+| `<>` | Not equal to |
 ```
   SELECT * FROM employees
   WHERE department_id IN (10, 20);
