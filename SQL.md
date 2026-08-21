@@ -81,3 +81,17 @@ HAVING AVG(salary) > 70000;
     - Shared Lock: A shared lock is required for reading a data item and many transactions may hold a lock on the same data item in a shared lock. Multiple transactions are allowed to read the data items in a shared lock.
   - Exclusive lock: An exclusive lock is a lock on any transaction that is about to perform a write operation. This type of lock doesn’t allow more than one transaction and hence prevents any inconsistency in the database. 
 
+
+## Indexes
+- An index in DBMS is used to speed up data retrieval.
+
+  #### Types of indexes :
+
+    - Primary Index -It is created on a sorted data file, usually on the primary key.
+    - Clustered Index - This one determines the physical order of data in the table, only one allowed.
+    - Secondary Index - Created on non-primary key columns for faster access.
+    - Non-clustered Index - Separate structure storing pointers to actual data.
+
+    - B-Tree Index - Balanced tree structure, most commonly used.
+    - B+ Tree Index - An improved version of the B-Tree, stores data only in leaf nodes.
+    - Hash Index - Uses hash functions, very fast for equality searches.
