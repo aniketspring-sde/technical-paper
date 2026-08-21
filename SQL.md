@@ -95,3 +95,48 @@ HAVING AVG(salary) > 70000;
     - B-Tree Index - Balanced tree structure, most commonly used.
     - B+ Tree Index - An improved version of the B-Tree, stores data only in leaf nodes.
     - Hash Index - Uses hash functions, very fast for equality searches.
+## Transactions
+- A transaction is a sequence of one or more database operations that are treated as one logical unit of work. Either all operations in a transaction succeed, or none of them should take effect.
+  #### Transaction Commands
+
+    - BEGIN	- Starts a transaction
+    - START - TRANSACTION	Starts a transaction
+    - COMMIT - Permanently saves changes
+    - ROLLBACK -	Undoes uncommitted changes
+    - SAVEPOINT	- Creates a point that can be rolled back to
+    - ROLLBACK TO SAVEPOINT -	Rolls back to a specific savepoint
+
+  #### Transaction Example
+
+```sql
+    BEGIN;
+      UPDATE accounts
+      SET balance = balance - 1000
+      WHERE id = 1;
+      
+      UPDATE accounts
+      SET balance = balance + 1000
+      WHERE id = 2;
+      
+      COMMIT;
+```
+ 
+
+- If both operations succeed, COMMIT permanently saves the changes.
+
+
+```sql
+    BEGIN;
+    
+    UPDATE accounts
+    SET balance = balance - 1000
+    WHERE id = 1;
+    
+    UPDATE accounts
+    SET balance = balance + 1000
+    WHERE id = 2;
+    
+    ROLLBACK;
+```
+
+- ROLLBACK cancels the changes made during the transaction.
