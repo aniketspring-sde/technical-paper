@@ -47,7 +47,31 @@ GROUP BY department_id
 HAVING AVG(salary) > 70000;
 ```
 ## Normalization
-- Normalization is a process of reducing redundancy by organizing the data into multiple tables. Normalization leads to better usage of disk spaces and makes it easier to maintain the integrity of the      database.  
+- Normalization is a process of reducing redundancy by organizing the data into multiple tables. Normalization leads to better usage of disk spaces and makes it easier to maintain the integrity of the      database.
+#### Types of normalization forms in a DBMS:
+
+  - 1NF: It is known as the first normal form and is the simplest type of normalization that you can implement in a database. A table to be in its first normal form should satisfy the following conditions:
+
+    - Every column must have a single value and should be atomic.
+    - Duplicate columns from the same table should be removed.
+    - Separate tables should be created for each group of related data and each row should be identified with a unique column.
+  - 2NF: It is known as the second normal form. A table to be in its second normal form should satisfy the following conditions:
+
+    - The table should be in its 1NF, satisfy all the conditions of 1NF.     
+    - Every non-prime attribute of the table should be fully functionally dependent on the primary key i.e. every non-key attribute should be dependent on the primary key in such a way that if any key element is deleted, then even the non-key element will be saved in the database.
+  - 3NF: It is known as the third normal form. A table to be in its third normal form should satisfy the following conditions:
+
+    - The table should be in its 2NF i.e. satisfy all the conditions of 2NF.
+    - There is no transitive functional dependency of one attribute on any attribute in the same table.
+  - BCNF: BCNF stands for Boyce-Codd Normal Form and is an advanced form of 3NF. It is also referred to as 3.5NF for the same reason. A table to be in its BCNF normal form should satisfy the following conditions:
+
+    - The table should be in its 3NF i.e. satisfy all the conditions of 3NF.
+    - For every functional dependency of any attribute A on B
+    (A->B), A should be the super key of the table. It simply implies that A can’t be a non-prime attribute if B is a prime attribute.
+
+
+
+
 
 
 ## Lock 
