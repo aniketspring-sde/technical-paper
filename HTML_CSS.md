@@ -177,6 +177,25 @@ If two or more CSS rules point to the same element, the declaration with the hig
       - `<meta name="rating" content="adult">, <meta name="rating" content="RTA-5042-1996-1400-1577-RTA">`
       - Labels a page as containing sexually-explicit adult content, to signal that it be filtered by SafeSearch results. Learn more about labeling SafeSearch pages.
 
+## Any other topic you think is important. 
+## CSS Transitions
+
+CSS transitions allow an element to change from one CSS property value to another **smoothly over a specified duration**, instead of changing instantly.
+
+### Syntax
+
+```css
+selector {
+    transition: property duration timing-function delay;
+}
+```
+ | Property                     | Description                                     |
+| ---------------------------- | ----------------------------------------------- |
+| `transition-property`        | Specifies which CSS property should transition. |
+| `transition-duration`        | Specifies how long the transition takes.        |
+| `transition-timing-function` | Controls the speed pattern of the transition.   |
+| `transition-delay`           | Specifies how long to wait before starting.     |
+
       
 ### References:
 - https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position
@@ -185,3 +204,4 @@ If two or more CSS rules point to the same element, the declaration with the hig
 - https://developers.google.com/search/docs/crawling-indexing/special-tags
 - https://www.w3schools.com/css/css3_flexbox.asp
 - https://www.w3schools.com/css/css_grid.asp
+- https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Transitions/Using
