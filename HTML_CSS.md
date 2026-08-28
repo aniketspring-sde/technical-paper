@@ -70,7 +70,73 @@ If two or more CSS rules point to the same element, the declaration with the hig
     CSS-Code;    
 - Here, media-type can be things like screen, print, speech, etc., and media-feature can be characteristics such as width, height, aspect ratio, orientation, and more.
 
-## Flexbox/Grid
+## Flexbox
+- Flexbox is a layout model for arranging items (horizontally or vertically) within a container, in a flexible and responsive way.
+- CSS Flexbox is used for a one-dimensional layout, with rows OR columns.
+- A flexbox always consists of:
+   - A Flex Container - The parent (container) element, where the display property is set to flex or inline-flex
+   - One or more Flex Items - The direct children of the flex container automatically becomes flex items
+  #### CSS Flex Container Properties
+      
+      The flex container element can have the following properties:
+      
+          display - Must be set to flex or inline-flex
+          flex-direction - Sets the display-direction of flex items
+          flex-wrap - Specifies whether the flex items should wrap or not
+          flex-flow - Shorthand property for flex-direction and flex-wrap
+          justify-content - Aligns the flex items when they do not use all available space on the main-axis (horizontally)
+          align-items - Aligns the flex items when they do not use all available space on the cross-axis (vertically)
+          align-content - Aligns the flex lines when there is extra space in the cross axis and flex items wrap
+   
+  #### CSS flex-direction Property
+
+      The flex-direction property specifies the display-direction of flex items in the flex container.
+      
+      This property can have one of the following values:
+      
+          row (default)
+          column
+          row-reverse
+          column-reverse
+  #### CSS flex-wrap Property
+
+      The flex-wrap property specifies whether the flex items should wrap or not, if there is not enough room for them on one flex line.
+      
+      This property can have one of the following values:
+      
+          nowrap (default)
+          wrap
+          wrap-reverse
+  #### CSS justify-content Property
+
+      The justify-content property aligns the flex items along the main-axis (horizontally).
+      
+      This property can have one of the following values:
+      
+          center
+          flex-start (default)
+          flex-end
+          space-around
+          space-between
+          space-evenly
+  #### CSS align-items Property
+
+      The align-items property aligns the flex items vertically (on the cross-axis).
+      
+      This property can have one of the following values:
+      
+          normal (default)
+          stretch
+          center
+          flex-start
+          flex-end
+          baseline
+
+
+
+
+
+
 ## Common header meta tags
 - The <meta> tag defines metadata about an HTML document. Metadata is data (information) about data.
 - <meta> tags always go inside the <head> element, and are typically used to specify character set, page description, keywords, author of the document, and viewport settings.
