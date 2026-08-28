@@ -63,7 +63,30 @@ If two or more CSS rules point to the same element, the declaration with the hig
    3. Class/attribute / pseudo-class selectors         
          
    4. Element/ pseudo-element selectors
+## CSS Responsive Queries
+- Media queries in CSS are used to apply different CSS styles based on the screen size, resolution, and other characteristics of the user device. Media queries uses @media rule to include a extra block of CSS properties when a certain conditions are met. Media queries can also be used to style printable version of page separately.
+   - Syntax      
+@media not|only mediatype and (media feature) and (media feature) {     
+    CSS-Code;    
+- Here, media-type can be things like screen, print, speech, etc., and media-feature can be characteristics such as width, height, aspect ratio, orientation, and more.
+
+## Flexbox/Grid
+## Common header meta tags
+- The <meta> tag defines metadata about an HTML document. Metadata is data (information) about data.
+- <meta> tags always go inside the <head> element, and are typically used to specify character set, page description, keywords, author of the document, and viewport settings.
+- Metadata will not be displayed on the page, but is machine parsable.
+- Metadata is used by browsers (how to display content or reload page), search engines (keywords), and other web services.
+   - meta tags:
+      - `<meta name="description" content="A description of the page">`
+      - Use this tag to provide a short description of the page. In some situations, this description is used in the snippet shown in search results
+      - `<meta name="viewport" content="...">`
+      - This tag tells the browser how to render a page on a mobile device. Presence of this tag indicates to Google that the page is mobile friendly. Read more about how to configure the viewport meta tag.
+      - `<meta name="rating" content="adult">, <meta name="rating" content="RTA-5042-1996-1400-1577-RTA">`
+      - Labels a page as containing sexually-explicit adult content, to signal that it be filtered by SafeSearch results. Learn more about labeling SafeSearch pages.
 
       
 ### References:
 - https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position
+- https://www.w3schools.com/css/css_specificity.asp
+- https://www.tutorialspoint.com/css/css_media_queries.html
+- https://developers.google.com/search/docs/crawling-indexing/special-tags
