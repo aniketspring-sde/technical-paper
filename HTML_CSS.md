@@ -131,6 +131,33 @@ If two or more CSS rules point to the same element, the declaration with the hig
           flex-start
           flex-end
           baseline
+## Grid
+- The Grid Layout Module offers a grid-based layout system, with rows and columns.
+- CSS Grid is used for two-dimensional layout, with rows AND columns.
+- A grid always consists of:
+    - A Grid Container - The parent (container) element, where the display property is set to grid or inline-grid
+    - One or more Grid Items - The direct children of the grid container automatically becomes grid items
+  
+  ### CSS Grid Container Properties
+
+| Property | Description |
+|---|---|
+| `align-content` | Vertically aligns the grid inside the container. |
+| `align-items` | Specifies the default alignment of grid items. |
+| `display` | Specifies how an element is displayed. |
+| `column-gap` | Specifies the gap between columns. |
+| `gap` | Shorthand for `row-gap` and `column-gap`. |
+| `grid` | Shorthand for multiple grid properties such as rows, columns, areas, and auto-flow. |
+| `grid-auto-columns` | Specifies the default size of automatically created columns. |
+| `grid-auto-flow` | Specifies how auto-placed items are inserted into the grid. |
+| `grid-auto-rows` | Specifies the default size of automatically created rows. |
+| `grid-template` | Shorthand for `grid-template-rows`, `grid-template-columns`, and `grid-template-areas`. |
+| `grid-template-areas` | Defines the layout using named grid areas. |
+| `grid-template-columns` | Defines the number and size of grid columns. |
+| `grid-template-rows` | Defines the number and size of grid rows. |
+| `justify-content` | Horizontally aligns the grid inside the container. |
+| `place-content` | Shorthand for `align-content` and `justify-content`. |
+| `row-gap` | Specifies the gap between rows. |
 
 
 
@@ -156,3 +183,4 @@ If two or more CSS rules point to the same element, the declaration with the hig
 - https://www.w3schools.com/css/css_specificity.asp
 - https://www.tutorialspoint.com/css/css_media_queries.html
 - https://developers.google.com/search/docs/crawling-indexing/special-tags
+- https://www.w3schools.com/css/css3_flexbox.asp
