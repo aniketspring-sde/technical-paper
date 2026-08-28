@@ -33,6 +33,37 @@ Inline elements normally remain within the same line as surrounding content.
 ## Positioning: Relative/Absolute
 - position: relative keeps the element in the normal document layout flow. Adjusting its coordinates shifts it relative to its own original position, leaving an empty placeholder gap where it used to be.
 - position: absolute rips the element completely out of the normal layout flow. Other elements behave as if it does not exist. It anchors itself relative to its closest parent container that has a defined position.
+
+## Common CSS structural classes
+- Structural classes are used to organize the layout of a webpage.
+  
+| Class        | Purpose                 |
+| ------------ | ----------------------- |
+| `.container` | Main content wrapper    |
+| `.header`    | Header section          |
+| `.navbar`    | Navigation area         |
+| `.main`      | Main content            |
+| `.content`   | Primary content         |
+| `.sidebar`   | Secondary content       |
+| `.section`   | Logical content section |
+| `.footer`    | Footer                  |
+| `.row`       | Horizontal layout       |
+| `.column`    | Vertical/content column |
+
+## Common CSS syling classes
+
+## CSS Specificity
+- CSS specificity is an algorithm that determines which style declaration is ultimately applied to an element.
+If two or more CSS rules point to the same element, the declaration with the highest specificity will "win", and that style will be applied to the HTML element.
+ - Specificity Hierarchy
+   1. Inline styles
+      
+   2. ID selectors  
+      
+   3. Class/attribute / pseudo-class selectors         
+         
+   4. Element/ pseudo-element selectors
+
       
 ### References:
 - https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position
