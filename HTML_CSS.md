@@ -30,4 +30,9 @@ Inline elements normally remain within the same line as surrounding content.
       - Does not normally start a new line.
       - width and height do not behave like they do on block boxes.
       - Horizontal margin and padding affect surrounding inline content.
+## Positioning: Relative/Absolute
+- position: relative keeps the element in the normal document layout flow. Adjusting its coordinates shifts it relative to its own original position, leaving an empty placeholder gap where it used to be.
+- position: absolute rips the element completely out of the normal layout flow. Other elements behave as if it does not exist. It anchors itself relative to its closest parent container that has a defined position.
       
+### References:
+- https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position
