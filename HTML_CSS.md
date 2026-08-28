@@ -11,3 +11,23 @@
    - Margin: Represents the space outside the border of an element. Like padding, margins can also be set separately for each side and are typically used to create space between elements on a webpage. The size of this box is set using margin and other related properties.
 
      <img width="642" height="302" alt="image" src="https://github.com/user-attachments/assets/e4c389cd-dcc8-4c29-b717-6d27e1af250a" />
+
+## Inline versus Block Elements.
+- Block Elements
+A block element normally starts on a new line and occupies the available horizontal space.
+  - example: div, p, h1, section
+  - Characteristics:
+
+      - Starts on a new line.
+      - Normally takes the available width.
+      - width and height can be applied.
+      - Margin and padding affect surrounding layout.
+- Inline Elements
+Inline elements normally remain within the same line as surrounding content.
+ - example: span, a
+ - Characteristics:
+
+      - Does not normally start a new line.
+      - width and height do not behave like they do on block boxes.
+      - Horizontal margin and padding affect surrounding inline content.
+      
