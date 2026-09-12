@@ -25,4 +25,10 @@
 - Because var is not block-scoped, and it can be redeclared.
 ## Why is using global variables bad?
 - Because any part of the program can access and modify them, which can cause readability, maintainability, debugging, and name-collision issues.
-## truthy and falsy values.
+## Truthy and falsy values.
+- In javaScript truthy and falsy values means what happened to vaiables when they treated as boolean.
+- Truthy values: "hello", "0", [], {}, 42, -10, true
+- Falsy values: false, 0, -0, 0n, "", null, undefined, NaN
+
+## Function hoisting
+- In JavaScript, function hoisting refers to calling a function before its declaration.
