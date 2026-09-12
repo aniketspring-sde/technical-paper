@@ -3659,3 +3659,365 @@ throw
 ```
 
 Effective error handling improves application reliability, prevents unexpected termination, and provides a controlled mechanism for responding to exceptional conditions.
+
+
+## Throwing Errors in JavaScript
+
+The `throw` statement is used in JavaScript to explicitly generate an exception when a specific condition occurs. It allows developers to detect invalid states and prevent the program from continuing with incorrect data or execution.
+
+### Syntax
+
+```javascript
+throw expression;
+```
+
+The expression can be an `Error` object or another JavaScript value. It is recommended to throw an `Error` object because it provides useful information such as the error name and message.
+
+```javascript
+throw new Error("Invalid input");
+```
+
+### Example
+
+```javascript
+function divide(a, b) {
+    if (b === 0) {
+        throw new Error("Division by zero is not allowed");
+    }
+
+    return a / b;
+}
+
+try {
+    console.log(divide(10, 0));
+} catch (error) {
+    console.log(error.message);
+}
+```
+
+**Output:**
+
+```text
+Division by zero is not allowed
+```
+
+### Why Use `throw`?
+
+The `throw` statement is commonly used to:
+
+- Validate input values.
+- Detect invalid application states.
+- Stop execution when a required condition is not satisfied.
+- Communicate errors from a function to its caller.
+- Create application-specific or custom errors.
+
+### Throwing an Error During Validation
+
+```javascript
+function registerUser(name, age) {
+    if (!name) {
+        throw new Error("Name is required");
+    }
+
+    if (age < 18) {
+        throw new Error("User must be at least 18 years old");
+    }
+
+    return "User registered successfully";
+}
+
+try {
+    console.log(registerUser("Aniket", 16));
+} catch (error) {
+    console.log(error.message);
+}
+```
+
+**Output:**
+
+```text
+User must be at least 18 years old
+```
+
+### Built-in Error Types
+
+JavaScript provides several built-in error types that can be thrown explicitly.
+
+```javascript
+throw new Error("General error");
+
+throw new TypeError("Expected a number");
+
+throw new RangeError("Value is outside the valid range");
+
+throw new ReferenceError("Variable does not exist");
+```
+
+For example:
+
+```javascript
+function calculateAge(age) {
+    if (typeof age !== "number") {
+        throw new TypeError("Age must be a number");
+    }
+
+    return age;
+}
+
+try {
+    console.log(calculateAge("25"));
+} catch (error) {
+    console.log(error.name);
+    console.log(error.message);
+}
+```
+
+**Output:**
+
+```text
+TypeError
+Age must be a number
+```
+
+### `throw` with `try...catch`
+
+When an error is thrown inside a `try` block, JavaScript immediately stops normal execution of that block and transfers control to the corresponding `catch` block.
+
+```javascript
+try {
+    throw new Error("Custom error");
+    
+    console.log("This statement will not execute");
+} catch (error) {
+    console.log(error.message);
+}
+```
+
+**Output:**
+
+```text
+Custom error
+```
+
+### Throwing Errors from Functions
+
+A function can throw an error, and the caller can decide how to handle it.
+
+```javascript
+function withdraw(balance, amount) {
+    if (amount > balance) {
+        throw new Error("Insufficient balance");
+    }
+
+    return balance - amount;
+}
+
+try {
+    const remainingBalance = withdraw(1000, 1500);
+    console.log(remainingBalance);
+} catch (error) {
+    console.log(error.message);
+}
+```
+
+**Output:**
+
+```text
+Insufficient balance
+```
+
+### Throwing Custom Errors
+
+Custom error messages can be created according to application requirements.
+
+```javascript
+function validatePassword(password) {
+    if (password.length < 8) {
+        throw new Error("Password must contain at least 8 characters");
+    }
+
+    return true;
+}
+
+try {
+    validatePassword("abc");
+} catch (error) {
+    console.log(error.message);
+}
+```
+
+### Execution Flow
+
+The general execution flow is:
+
+```text
+try block
+    |
+    | Error occurs
+    v
+throw error
+    |
+    v
+catch block
+    |
+    v
+Error handled
+```
+
+If no error occurs, the `catch` block is skipped.
+
+```text
+try block
+    |
+    | No error
+    v
+Continue execution
+```
+
+### Important Point
+
+Throwing an error does not mean that the error is automatically handled. The error must either be handled by an appropriate `try...catch` block or propagate to a higher level of the application.
+
+```javascript
+function test() {
+    throw new Error("Something went wrong");
+}
+
+test();
+```
+
+If there is no surrounding `try...catch`, the error propagates to the JavaScript runtime and the program may terminate or report an uncaught exception.
+
+## Summary
+
+The `throw` statement provides explicit control over error generation in JavaScript. It is particularly useful for input validation, business-rule validation, and detecting invalid application states. When combined with `try...catch`, it allows applications to detect, propagate, and handle errors in a controlled manner.
+
+
+## Difference Between `throw new Error()` and `throw "string"`
+
+JavaScript allows any value to be thrown using the `throw` statement. However, throwing an `Error` object is recommended because it provides structured error information such as the error name, message, and stack trace.
+
+### 1. Throwing an `Error` Object
+
+```javascript
+throw new Error("Error message here");
+```
+
+This creates an `Error` object and throws it.
+
+```javascript
+try {
+    throw new Error("Something went wrong");
+} catch (error) {
+    console.log(error.name);
+    console.log(error.message);
+    console.log(error.stack);
+}
+```
+
+The thrown value contains useful properties:
+
+```text
+name
+message
+stack
+```
+
+For example:
+
+```text
+Error
+Something went wrong
+Error: Something went wrong
+    at ...
+```
+
+### 2. Throwing a String
+
+```javascript
+throw "Error message here";
+```
+
+In this case, the string itself is thrown.
+
+```javascript
+try {
+    throw "Something went wrong";
+} catch (error) {
+    console.log(error);
+}
+```
+
+Output:
+
+```text
+Something went wrong
+```
+
+The thrown value is just a string. It does not contain the standard `Error` properties such as `name`, `message`, and `stack`.
+
+For example:
+
+```javascript
+try {
+    throw "Something went wrong";
+} catch (error) {
+    console.log(error.name);
+    console.log(error.message);
+}
+```
+
+Output:
+
+```text
+undefined
+undefined
+```
+
+### Comparison
+
+| Feature | `throw new Error("message")` | `throw "message"` |
+|---|---|---|
+| Thrown value | `Error` object | String |
+| `error.name` | Available | Not available |
+| `error.message` | Available | Not available |
+| `error.stack` | Available | Not available |
+| Debugging information | Better | Limited |
+| Standard practice | Recommended | Not recommended |
+| Can be caught by `catch` | Yes | Yes |
+
+### Recommended Approach
+
+Use an `Error` object when throwing errors:
+
+```javascript
+throw new Error("Invalid user input");
+```
+
+Avoid throwing strings:
+
+```javascript
+throw "Invalid user input";
+```
+
+The preferred approach is to throw `Error` objects because they provide standardized error information and improve debugging, error handling, and maintainability.
+
+### Important Point
+
+Both statements cause an exception:
+
+```javascript
+throw new Error("Error message here");
+```
+
+and
+
+```javascript
+throw "Error message here";
+```
+
+The difference is that the first throws an **`Error` object**, whereas the second throws a **string value**.
+
+Therefore:
+
+> **`throw new Error()` is the recommended way to throw errors in JavaScript.**
