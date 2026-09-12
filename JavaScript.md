@@ -3069,3 +3069,229 @@ The choice of an array method should be based on the intended operation:
 - **`reduce()`** is used to combine multiple elements into a single accumulated result.
 
 Therefore, `forEach()` is primarily action-oriented, `map()` is transformation-oriented, `filter()` is selection-oriented, and `reduce()` is aggregation-oriented.
+
+
+# Mutable and Immutable Array Methods in JavaScript
+
+In JavaScript, array methods can be broadly classified as **mutable** or **immutable** based on whether they modify the original array.
+
+## 1. Mutable Methods
+
+A **mutable method** modifies the original array on which the method is called. After the operation, the original array may have different elements, order, or length.
+
+### Common Mutable Array Methods
+
+| Method | Purpose |
+|---|---|
+| `push()` | Adds elements to the end |
+| `pop()` | Removes the last element |
+| `shift()` | Removes the first element |
+| `unshift()` | Adds elements to the beginning |
+| `splice()` | Adds, removes, or replaces elements |
+| `sort()` | Sorts the array |
+| `reverse()` | Reverses the array |
+| `fill()` | Replaces elements with a specified value |
+
+### Example
+
+```javascript
+const numbers = [1, 2, 3];
+
+numbers.push(4);
+
+console.log(numbers);
+// [1, 2, 3, 4]
+```
+
+The original `numbers` array is modified by `push()`.
+
+Another example:
+
+```javascript
+const numbers = [3, 1, 2];
+
+numbers.sort();
+
+console.log(numbers);
+// [1, 2, 3]
+```
+
+The original array is modified by `sort()`.
+
+---
+
+## 2. Immutable Methods
+
+An **immutable method** does not modify the original array. Instead, it returns a new array or another value based on the original array.
+
+### Common Immutable Array Methods
+
+| Method | Purpose | Return Value |
+|---|---|---|
+| `map()` | Transforms elements | New array |
+| `filter()` | Selects elements | New array |
+| `slice()` | Extracts a portion | New array |
+| `concat()` | Combines arrays | New array |
+| `flat()` | Flattens nested arrays | New array |
+| `find()` | Finds an element | Element |
+| `findIndex()` | Finds an element's index | Number |
+| `includes()` | Checks whether an element exists | Boolean |
+| `indexOf()` | Finds an element's index | Number |
+
+### Example
+
+```javascript
+const numbers = [1, 2, 3];
+
+const doubled = numbers.map(number => number * 2);
+
+console.log(doubled);
+// [2, 4, 6]
+
+console.log(numbers);
+// [1, 2, 3]
+```
+
+The `map()` method creates a new array and does not modify the original array.
+
+---
+
+## 3. forEach() and Immutability
+
+`forEach()` does not modify the array by itself. However, the callback function can explicitly modify the array.
+
+```javascript
+const numbers = [1, 2, 3];
+
+numbers.forEach((number, index, array) => {
+    array[index] = number * 2;
+});
+
+console.log(numbers);
+// [2, 4, 6]
+```
+
+Therefore, `forEach()` should not be described simply as an "immutable method." More precisely, **`forEach()` does not mutate the array by itself, but its callback can cause mutations.**
+
+---
+
+## 4. map(), filter(), and reduce()
+
+These methods do not modify the original array by themselves.
+
+### map()
+
+```javascript
+const numbers = [1, 2, 3];
+
+const result = numbers.map(number => number * 2);
+
+console.log(numbers);
+// [1, 2, 3]
+
+console.log(result);
+// [2, 4, 6]
+```
+
+### filter()
+
+```javascript
+const numbers = [1, 2, 3, 4];
+
+const result = numbers.filter(number => number % 2 === 0);
+
+console.log(numbers);
+// [1, 2, 3, 4]
+
+console.log(result);
+// [2, 4]
+```
+
+### reduce()
+
+```javascript
+const numbers = [1, 2, 3, 4];
+
+const total = numbers.reduce((sum, number) => {
+    return sum + number;
+}, 0);
+
+console.log(numbers);
+// [1, 2, 3, 4]
+
+console.log(total);
+// 10
+```
+
+---
+
+## 5. Why Immutability Is Useful
+
+Immutable operations are useful when the original data should remain unchanged.
+
+```javascript
+const original = [1, 2, 3];
+
+const updated = [...original, 4];
+
+console.log(original);
+// [1, 2, 3]
+
+console.log(updated);
+// [1, 2, 3, 4]
+```
+
+Keeping the original data unchanged can make programs easier to reason about and can reduce unintended side effects.
+
+---
+
+## 6. Mutable vs Immutable Methods
+
+| Method | Mutable? | Original Array Modified? |
+|---|---:|---:|
+| `push()` | Yes | Yes |
+| `pop()` | Yes | Yes |
+| `shift()` | Yes | Yes |
+| `unshift()` | Yes | Yes |
+| `splice()` | Yes | Yes |
+| `sort()` | Yes | Yes |
+| `reverse()` | Yes | Yes |
+| `fill()` | Yes | Yes |
+| `map()` | No | No |
+| `filter()` | No | No |
+| `slice()` | No | No |
+| `concat()` | No | No |
+| `flat()` | No | No |
+| `find()` | No | No |
+| `findIndex()` | No | No |
+| `includes()` | No | No |
+| `indexOf()` | No | No |
+| `reduce()` | No* | No* |
+| `forEach()` | No* | No* |
+
+> **Note:** `map()`, `filter()`, `reduce()`, and `forEach()` do not mutate the array themselves. However, their callback functions can mutate objects or arrays referenced by the elements.
+
+## 7. Summary
+
+The main distinction is:
+
+```text
+Mutable
+    → Modifies the original array
+
+Immutable
+    → Does not modify the original array
+    → Usually returns a new array or value
+```
+
+For example:
+
+```javascript
+// Mutable
+numbers.push(10);
+
+// Immutable
+const newNumbers = numbers.map(number => number * 2);
+```
+
+Therefore, mutable methods should be used when modifying the existing array is intentional, while immutable methods are preferred when the original data should be preserved.
