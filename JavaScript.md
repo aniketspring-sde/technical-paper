@@ -2335,3 +2335,456 @@ JavaScript Strings → Immutable
 ```
 
 So, string methods do not modify the original string. They return a new string or another value.
+
+
+# Popular Object Utility Methods in JavaScript
+
+JavaScript provides several built-in methods for working with objects.
+
+> **Important:** Most object utility methods do not modify the original object. They return a new array or value.
+
+---
+
+## 1. Object.keys()
+
+Returns an array containing all the **keys/property names** of an object.
+
+**Immutable:** Yes — does not modify the object.
+
+```javascript
+const person = {
+    name: 'Aniket',
+    age: 32,
+    city: 'Mumbai'
+};
+
+const keys = Object.keys(person);
+
+console.log(keys);
+// ['name', 'age', 'city']
+
+console.log(person);
+// Original object is unchanged
+```
+
+---
+
+## 2. Object.values()
+
+Returns an array containing all the **values** of an object.
+
+**Immutable:** Yes — does not modify the object.
+
+```javascript
+const person = {
+    name: 'Aniket',
+    age: 32,
+    city: 'Mumbai'
+};
+
+const values = Object.values(person);
+
+console.log(values);
+// ['Aniket', 32, 'Mumbai']
+```
+
+---
+
+## 3. Object.entries()
+
+Returns an array containing the object's **key-value pairs**.
+
+Each pair is represented as an array.
+
+**Immutable:** Yes — does not modify the object.
+
+```javascript
+const person = {
+    name: 'Aniket',
+    age: 32,
+    city: 'Mumbai'
+};
+
+const entries = Object.entries(person);
+
+console.log(entries);
+
+// [
+//     ['name', 'Aniket'],
+//     ['age', 32],
+//     ['city', 'Mumbai']
+// ]
+```
+
+### Using Object.entries() with for...of
+
+```javascript
+for (const [key, value] of Object.entries(person)) {
+    console.log(key, value);
+}
+```
+
+Output:
+
+```text
+name Aniket
+age 32
+city Mumbai
+```
+
+---
+
+## 4. Object.fromEntries()
+
+Converts an array of key-value pairs into an object.
+
+**Immutable:** Yes — creates a new object.
+
+```javascript
+const entries = [
+    ['name', 'Aniket'],
+    ['age', 32],
+    ['city', 'Mumbai']
+];
+
+const person = Object.fromEntries(entries);
+
+console.log(person);
+
+// {
+//     name: 'Aniket',
+//     age: 32,
+//     city: 'Mumbai'
+// }
+```
+
+---
+
+## 5. Object.assign()
+
+Copies properties from one or more objects into a target object.
+
+**Mutable:** Yes — the target object is modified.
+
+```javascript
+const person = {
+    name: 'Aniket'
+};
+
+const details = {
+    age: 32,
+    city: 'Mumbai'
+};
+
+Object.assign(person, details);
+
+console.log(person);
+
+// {
+//     name: 'Aniket',
+//     age: 32,
+//     city: 'Mumbai'
+// }
+```
+
+### Important
+
+The first argument is the **target object** and gets modified.
+
+```javascript
+Object.assign(target, source);
+```
+
+---
+
+## 6. Object.assign() for creating a new object
+
+You can use an empty object as the target to avoid modifying the original object.
+
+**Immutable:** Original object is not modified.
+
+```javascript
+const person = {
+    name: 'Aniket',
+    age: 32
+};
+
+const updatedPerson = Object.assign({}, person, {
+    city: 'Mumbai'
+});
+
+console.log(updatedPerson);
+
+// {
+//     name: 'Aniket',
+//     age: 32,
+//     city: 'Mumbai'
+// }
+
+console.log(person);
+
+// {
+//     name: 'Aniket',
+//     age: 32
+// }
+```
+
+---
+
+## 7. Object.hasOwn()
+
+Checks whether an object has a specific property as its **own property**.
+
+Returns `true` or `false`.
+
+**Immutable:** Yes — does not modify the object.
+
+```javascript
+const person = {
+    name: 'Aniket',
+    age: 32
+};
+
+console.log(Object.hasOwn(person, 'name'));
+// true
+
+console.log(Object.hasOwn(person, 'city'));
+// false
+```
+
+---
+
+## 8. Object.freeze()
+
+Prevents changes to an object.
+
+After freezing, properties cannot be added, removed, or changed.
+
+**Mutable:** No — the object becomes non-modifiable.
+
+```javascript
+const person = {
+    name: 'Aniket',
+    age: 32
+};
+
+Object.freeze(person);
+
+person.age = 35;
+person.city = 'Mumbai';
+delete person.name;
+
+console.log(person);
+
+// {
+//     name: 'Aniket',
+//     age: 32
+// }
+```
+
+> `Object.freeze()` itself does not mutate the object's values. Instead, it makes the object immutable/shallowly frozen.
+
+---
+
+## 9. Object.seal()
+
+Prevents adding or deleting properties, but existing properties can still be changed.
+
+**Mutable:** Yes — existing properties can be modified.
+
+```javascript
+const person = {
+    name: 'Aniket',
+    age: 32
+};
+
+Object.seal(person);
+
+person.age = 35;
+
+person.city = 'Mumbai';
+
+delete person.name;
+
+console.log(person);
+
+// {
+//     name: 'Aniket',
+//     age: 35
+// }
+```
+
+The `age` property changed, but `city` could not be added and `name` could not be deleted.
+
+---
+
+## 10. Object.create()
+
+Creates a new object using another object as its prototype.
+
+**Immutable:** The prototype object is not modified.
+
+```javascript
+const personPrototype = {
+    greet() {
+        console.log('Hello');
+    }
+};
+
+const person = Object.create(personPrototype);
+
+person.name = 'Aniket';
+
+console.log(person.name);
+// Aniket
+
+person.greet();
+// Hello
+```
+
+---
+
+## 11. Object.is()
+
+Compares two values and returns `true` or `false`.
+
+**Immutable:** Yes.
+
+```javascript
+console.log(Object.is(10, 10));
+// true
+
+console.log(Object.is(10, 20));
+// false
+
+console.log(Object.is('hello', 'hello'));
+// true
+```
+
+It is similar to `===`, but has some differences for special values.
+
+```javascript
+console.log(Object.is(NaN, NaN));
+// true
+
+console.log(Object.is(+0, -0));
+// false
+```
+
+---
+
+## 12. Object.getOwnPropertyNames()
+
+Returns an array containing the object's own property names.
+
+**Immutable:** Yes.
+
+```javascript
+const person = {
+    name: 'Aniket',
+    age: 32
+};
+
+const properties = Object.getOwnPropertyNames(person);
+
+console.log(properties);
+
+// ['name', 'age']
+```
+
+---
+
+# Mutable vs Immutable
+
+| Method | Mutable? | Return Value |
+|---|---|---|
+| `Object.keys()` | No | Array of keys |
+| `Object.values()` | No | Array of values |
+| `Object.entries()` | No | Array of key-value pairs |
+| `Object.fromEntries()` | No | New object |
+| `Object.assign()` | **Yes** | Target object |
+| `Object.hasOwn()` | No | Boolean |
+| `Object.freeze()` | No* | Object |
+| `Object.seal()` | No* | Object |
+| `Object.create()` | No | New object |
+| `Object.is()` | No | Boolean |
+| `Object.getOwnPropertyNames()` | No | Array |
+
+> `Object.freeze()` and `Object.seal()` change the object's **property descriptors/state**, so they are better understood as object-state operations rather than normal immutable transformation methods.
+
+---
+
+# Most Important Methods to Remember
+
+```text
+Object.keys()
+    → Get keys
+
+Object.values()
+    → Get values
+
+Object.entries()
+    → Get key-value pairs
+
+Object.fromEntries()
+    → Convert key-value pairs into an object
+
+Object.assign()
+    → Copy/merge properties
+
+Object.hasOwn()
+    → Check whether a property exists
+
+Object.freeze()
+    → Prevent changes
+
+Object.seal()
+    → Prevent adding/removing properties
+
+Object.create()
+    → Create an object with a prototype
+
+Object.is()
+    → Compare two values
+```
+
+# Quick Example
+
+```javascript
+const person = {
+    name: 'Aniket',
+    age: 32,
+    city: 'Mumbai'
+};
+
+// Get keys
+console.log(Object.keys(person));
+
+// Get values
+console.log(Object.values(person));
+
+// Get entries
+console.log(Object.entries(person));
+
+// Check property
+console.log(Object.hasOwn(person, 'name'));
+
+// Convert entries back to object
+const newPerson = Object.fromEntries(Object.entries(person));
+
+console.log(newPerson);
+```
+
+# Key Points
+
+- `Object.keys()` → returns keys.
+- `Object.values()` → returns values.
+- `Object.entries()` → returns key-value pairs.
+- `Object.fromEntries()` → creates an object from key-value pairs.
+- `Object.assign()` → copies properties and can modify the target object.
+- `Object.hasOwn()` → checks for an own property.
+- `Object.freeze()` → prevents modifications.
+- `Object.seal()` → prevents adding/deleting properties.
+- `Object.create()` → creates an object with a specified prototype.
+- `Object.is()` → compares two values.
+- Objects themselves are **mutable by default**.
