@@ -4041,3 +4041,613 @@ Output:
 
 [1, 2, 3, 4, 5]
 ```
+
+
+## 1. Template Literals
+
+Template literals are strings enclosed in backticks (`) that allow variable interpolation and multi-line strings.
+
+```javascript
+const name = "Aniket";
+const age = 32;
+
+console.log(`My name is ${name} and I am ${age} years old.`);
+```
+
+**Advantages:**
+- Supports `${expression}` for interpolation.
+- Supports multi-line strings.
+- Improves readability when constructing dynamic strings.
+
+---
+
+## 2. Default Parameters
+
+Default parameters provide a default value when an argument is not passed or is `undefined`.
+
+```javascript
+function greet(name = "Guest") {
+    console.log(`Hello ${name}`);
+}
+
+greet();          // Hello Guest
+greet("Aniket");  // Hello Aniket
+```
+
+Default parameters help prevent unnecessary checks for missing arguments.
+
+---
+
+## 3. Destructuring
+
+Destructuring extracts values from arrays or properties from objects into variables.
+
+### Object Destructuring
+
+```javascript
+const user = {
+    name: "Aniket",
+    age: 32
+};
+
+const { name, age } = user;
+
+console.log(name);
+console.log(age);
+```
+
+### Array Destructuring
+
+```javascript
+const numbers = [10, 20, 30];
+
+const [first, second, third] = numbers;
+
+console.log(first);  // 10
+```
+
+Destructuring makes code shorter and improves readability.
+
+---
+
+## 4. Closures
+
+A closure occurs when a function remembers and can access variables from its outer lexical scope even after the outer function has finished executing.
+
+```javascript
+function counter() {
+    let count = 0;
+
+    return function () {
+        count++;
+        return count;
+    };
+}
+
+const increment = counter();
+
+console.log(increment()); // 1
+console.log(increment()); // 2
+```
+
+The inner function retains access to `count`.
+
+**Common uses:**
+- Data privacy
+- State management
+- Callbacks
+- Function factories
+
+---
+
+## 5. Arrow Functions vs Regular Functions
+
+| Feature | Regular Function | Arrow Function |
+|---|---|---|
+| Syntax | `function add() {}` | `const add = () => {}` |
+| `this` | Has its own `this` | Inherits `this` from surrounding scope |
+| `arguments` | Has `arguments` object | Does not have its own `arguments` |
+| Constructor | Can be used with `new` | Cannot be used as a constructor |
+| `prototype` | Has a prototype property | Does not have its own prototype |
+| Best use | Methods, constructors, general functions | Callbacks and concise functions |
+
+```javascript
+function add(a, b) {
+    return a + b;
+}
+
+const multiply = (a, b) => a * b;
+```
+
+A major difference is that arrow functions use **lexical `this`**, while regular functions determine `this` based on how the function is called.
+
+---
+
+## 6. Difference Between `===` and `==`
+
+`===` is the **strict equality operator**. It compares both value and type.
+
+`==` is the **loose equality operator**. It performs type coercion before comparison.
+
+```javascript
+5 === "5"; // false
+5 == "5";  // true
+
+0 === false; // false
+0 == false;  // true
+```
+
+**Best practice:** Prefer `===` because it avoids unexpected type coercion and makes comparisons more predictable.
+
+---
+
+## 7. Why `value === undefined` Is Better Than `!value`
+
+`!value` checks whether a value is **falsy**, not specifically whether it is `undefined`.
+
+Falsy values include:
+
+```javascript
+false
+0
+""
+null
+undefined
+NaN
+```
+
+Therefore:
+
+```javascript
+let value = 0;
+
+if (!value) {
+    console.log("Falsy value");
+}
+```
+
+This condition is true even though `value` is not `undefined`.
+
+To specifically check for `undefined`:
+
+```javascript
+if (value === undefined) {
+    console.log("Value is undefined");
+}
+```
+
+This is more precise when the requirement is specifically to detect `undefined`.
+
+---
+
+## 8. Array Utility Methods Chaining
+
+Array method chaining means applying multiple array methods sequentially.
+
+Common methods include:
+
+- `filter()`
+- `map()`
+- `reduce()`
+- `sort()`
+
+Example:
+
+```javascript
+const numbers = [1, 2, 3, 4, 5, 6];
+
+const result = numbers
+    .filter(number => number % 2 === 0)
+    .map(number => number * 2);
+
+console.log(result); // [4, 8, 12]
+```
+
+Here:
+
+1. `filter()` selects even numbers.
+2. `map()` doubles each selected number.
+
+Method chaining improves readability when multiple transformations are required.
+
+---
+
+## 9. Difference Between `null` and `undefined`
+
+| `undefined` | `null` |
+|---|---|
+| Usually means a value has not been assigned | Represents an intentional absence of value |
+| Commonly produced by JavaScript | Usually assigned explicitly |
+| Example: uninitialized variable | Example: `let user = null` |
+
+```javascript
+let a;
+let b = null;
+
+console.log(a); // undefined
+console.log(b); // null
+```
+
+Both represent absence of a value, but their meaning is different.
+
+---
+
+## 10. Importing and Exporting Modules Using `require` and `module.exports`
+
+Node.js CommonJS modules use `module.exports` to export values and `require()` to import them.
+
+### Export
+
+```javascript
+// math.js
+
+function add(a, b) {
+    return a + b;
+}
+
+module.exports = add;
+```
+
+### Import
+
+```javascript
+// app.js
+
+const add = require("./math");
+
+console.log(add(10, 20));
+```
+
+Multiple values can also be exported:
+
+```javascript
+module.exports = {
+    add,
+    subtract
+};
+```
+
+They can be imported using:
+
+```javascript
+const { add, subtract } = require("./math");
+```
+
+This allows code to be divided into reusable modules.
+
+---
+
+## 11. Console Methods
+
+The `console` object provides methods for displaying information during development and debugging.
+
+| Method | Purpose |
+|---|---|
+| `console.log()` | General output |
+| `console.error()` | Error messages |
+| `console.warn()` | Warning messages |
+| `console.info()` | Informational messages |
+| `console.debug()` | Debugging information |
+| `console.table()` | Displays tabular data |
+| `console.dir()` | Displays object properties |
+| `console.assert()` | Displays output when a condition is false |
+| `console.time()` | Starts a timer |
+| `console.timeEnd()` | Stops a timer and displays elapsed time |
+
+Example:
+
+```javascript
+console.log("Application started");
+console.error("Database connection failed");
+console.warn("Deprecated method");
+console.table([
+    { name: "John", age: 25 },
+    { name: "Jane", age: 30 }
+]);
+```
+
+---
+
+## 12. JavaScript Best Practices
+
+Following consistent coding standards improves readability, maintainability, and collaboration.
+
+### Indentation
+
+Use consistent indentation.
+
+```javascript
+if (age >= 18) {
+    console.log("Adult");
+}
+```
+
+### Variable Naming
+
+Use meaningful and descriptive names.
+
+```javascript
+const studentName = "Aniket";
+const totalMarks = 450;
+```
+
+Avoid unclear names:
+
+```javascript
+const x = "Aniket";
+const n = 450;
+```
+
+### Loop Variable Naming
+
+Use names that describe what is being iterated.
+
+```javascript
+for (const student of students) {
+    console.log(student);
+}
+```
+
+Instead of:
+
+```javascript
+for (const x of students) {
+    console.log(x);
+}
+```
+
+### Constants
+
+Use `const` by default and use `let` when reassignment is required.
+
+```javascript
+const name = "Aniket";
+let score = 100;
+
+score = 150;
+```
+
+Avoid `var` in modern JavaScript because `let` and `const` provide block scope and clearer variable behavior.
+
+### Function Naming
+
+Use descriptive names that represent an action.
+
+```javascript
+calculateTotal();
+validateUser();
+fetchData();
+```
+
+### Avoid Unnecessary Global Variables
+
+Keep variables inside the smallest appropriate scope to reduce unintended modifications and dependencies.
+
+### Use Strict Equality
+
+Prefer:
+
+```javascript
+if (age === 18) {
+    // ...
+}
+```
+
+instead of:
+
+```javascript
+if (age == 18) {
+    // ...
+}
+```
+
+### Keep Functions Focused
+
+A function should generally perform one logical task.
+
+### Avoid Duplicate Code
+
+Reusable logic should be placed in functions rather than copied throughout the program.
+
+### Use Comments Carefully
+
+Comments should explain **why** something is done when the reason is not obvious. Code should be written clearly enough that comments are not needed for every statement.
+
+---
+
+## 13. Passing Functions to Other Functions and Invoking Them on Demand
+
+Functions in JavaScript are **first-class values**, meaning they can be stored in variables, passed as arguments, and returned from other functions.
+
+```javascript
+function greet() {
+    console.log("Hello");
+}
+
+function executeFunction(callback) {
+    callback();
+}
+
+executeFunction(greet);
+```
+
+Here, `greet` is passed to `executeFunction` and invoked inside it.
+
+This technique is commonly used with:
+
+- Callbacks
+- Event handlers
+- Array methods
+- Asynchronous programming
+
+Important distinction:
+
+```javascript
+executeFunction(greet);   // Passes the function
+executeFunction(greet()); // Executes it immediately
+```
+
+---
+
+## 14. Named Functions vs Anonymous Functions
+
+### Named Function
+
+A named function has an explicit name.
+
+```javascript
+function calculateTotal(a, b) {
+    return a + b;
+}
+```
+
+**Advantages:**
+- Easier to identify in stack traces.
+- Can be reused.
+- Improves readability.
+
+### Anonymous Function
+
+An anonymous function has no function name.
+
+```javascript
+const calculateTotal = function (a, b) {
+    return a + b;
+};
+```
+
+Anonymous functions are commonly used as callbacks.
+
+```javascript
+numbers.forEach(function (number) {
+    console.log(number);
+});
+```
+
+Arrow functions are another common way to write concise anonymous functions.
+
+```javascript
+numbers.forEach(number => console.log(number));
+```
+
+---
+
+## 15. Variable Number of Arguments Passed to Functions
+
+JavaScript functions can accept a variable number of arguments using the **rest parameter**.
+
+```javascript
+function sum(...numbers) {
+    let total = 0;
+
+    for (const number of numbers) {
+        total += number;
+    }
+
+    return total;
+}
+
+console.log(sum(10, 20));       // 30
+console.log(sum(10, 20, 30));   // 60
+```
+
+The `...numbers` syntax collects all remaining arguments into an array.
+
+The rest parameter must be the last parameter.
+
+```javascript
+function example(first, ...remaining) {
+    // ...
+}
+```
+
+---
+
+## 16. Debugging Strategies
+
+Debugging is the process of identifying and fixing errors in a program.
+
+### 1. Read the Error Message
+
+Start with the error type, message, and line number.
+
+```text
+ReferenceError: userName is not defined
+```
+
+### 2. Use `console.log()`
+
+Print variable values and execution points.
+
+```javascript
+console.log("Before calculation");
+console.log(total);
+```
+
+### 3. Use `console.error()`
+
+Use it when displaying errors or failed operations.
+
+```javascript
+console.error("Failed to fetch user data");
+```
+
+### 4. Use Breakpoints
+
+Use browser DevTools or an IDE debugger to pause program execution and inspect:
+
+- Variables
+- Call stack
+- Execution flow
+- Function arguments
+
+### 5. Use `debugger`
+
+The `debugger` statement pauses execution when a debugger is active.
+
+```javascript
+function calculateTotal(a, b) {
+    debugger;
+
+    return a + b;
+}
+```
+
+### 6. Check Values and Types
+
+Unexpected type coercion can cause bugs.
+
+```javascript
+console.log(value);
+console.log(typeof value);
+```
+
+### 7. Isolate the Problem
+
+Reduce a large problem to the smallest piece of code that reproduces the error.
+
+### 8. Check Function Inputs and Outputs
+
+Verify that each function receives the expected input and returns the expected result.
+
+### 9. Use Assertions
+
+Assertions help verify assumptions.
+
+```javascript
+console.assert(result === 10, "Unexpected result");
+```
+
+### 10. Test Edge Cases
+
+Test cases such as:
+
+- Empty arrays
+- `undefined`
+- `null`
+- Zero
+- Negative numbers
+- Duplicate values
+- Invalid input
+
+A systematic debugging process is generally more effective than changing code randomly.
