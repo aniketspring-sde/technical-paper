@@ -2788,3 +2788,284 @@ console.log(newPerson);
 - `Object.create()` → creates an object with a specified prototype.
 - `Object.is()` → compares two values.
 - Objects themselves are **mutable by default**.
+
+# Selection of Array Iteration and Utility Methods in JavaScript
+
+JavaScript provides several array iteration and utility methods, including `forEach()`, `map()`, `filter()`, and `reduce()`. Although these methods iterate over array elements, they are designed for different purposes. Selecting the appropriate method depends primarily on the required output and the operation that needs to be performed on the array.
+
+## 1. forEach()
+
+The `forEach()` method is used when an operation needs to be performed on each element of an array, but no new array or accumulated result is required from the iteration. It executes a callback function once for every element and returns `undefined`.
+
+### Example
+
+```javascript
+const numbers = [1, 2, 3, 4];
+
+numbers.forEach(number => {
+    console.log(number);
+});
+```
+
+In this example, `forEach()` is appropriate because the purpose is simply to perform an action for each element.
+
+### Common Use Cases
+
+- Printing or logging values
+- Updating the DOM
+- Calling a function for every element
+- Performing side effects
+- Executing an operation where the return value is not required
+
+```javascript
+const users = [
+    { name: 'Aniket' },
+    { name: 'Rahul' }
+];
+
+users.forEach(user => {
+    console.log(`Hello ${user.name}`);
+});
+```
+
+`forEach()` should generally not be used when the objective is to create a new array or calculate a single accumulated result.
+
+---
+
+## 2. map()
+
+The `map()` method is used when every element of an array needs to be transformed into a new value. It returns a new array containing the transformed elements.
+
+The resulting array normally contains the same number of elements as the original array.
+
+### Example
+
+```javascript
+const numbers = [1, 2, 3, 4];
+
+const doubledNumbers = numbers.map(number => {
+    return number * 2;
+});
+
+console.log(doubledNumbers);
+// [2, 4, 6, 8]
+```
+
+Here, each element is transformed by multiplying it by `2`.
+
+### Common Use Cases
+
+- Transforming values
+- Extracting a particular property from objects
+- Converting data from one format to another
+- Creating a modified representation of an existing array
+
+```javascript
+const users = [
+    { name: 'Aniket', age: 32 },
+    { name: 'Rahul', age: 25 }
+];
+
+const names = users.map(user => user.name);
+
+console.log(names);
+// ['Aniket', 'Rahul']
+```
+
+### Important Characteristic
+
+`map()` does not modify the original array by itself. It returns a new array.
+
+---
+
+## 3. filter()
+
+The `filter()` method is used when only certain elements of an array need to be selected based on a condition. It returns a new array containing the elements for which the callback function returns `true`.
+
+### Example
+
+```javascript
+const numbers = [1, 2, 3, 4, 5, 6];
+
+const evenNumbers = numbers.filter(number => {
+    return number % 2 === 0;
+});
+
+console.log(evenNumbers);
+// [2, 4, 6]
+```
+
+In this example, `filter()` selects only the numbers that satisfy the condition.
+
+### Common Use Cases
+
+- Selecting elements based on a condition
+- Removing unwanted elements
+- Searching for a subset of data
+- Filtering objects based on their properties
+
+```javascript
+const users = [
+    { name: 'Aniket', age: 32 },
+    { name: 'Rahul', age: 25 },
+    { name: 'Amit', age: 35 }
+];
+
+const eligibleUsers = users.filter(user => user.age >= 30);
+
+console.log(eligibleUsers);
+```
+
+### Important Characteristic
+
+`filter()` returns a new array, and the resulting array may contain fewer elements than the original array.
+
+---
+
+## 4. reduce()
+
+The `reduce()` method is used when multiple array elements need to be combined into a single result. It maintains an accumulator that is updated during each iteration.
+
+### Example
+
+```javascript
+const prices = [100, 200, 300, 400];
+
+const total = prices.reduce((sum, price) => {
+    return sum + price;
+}, 0);
+
+console.log(total);
+// 1000
+```
+
+In this example, `reduce()` combines all the prices into a single numerical value.
+
+### Common Use Cases
+
+- Calculating totals
+- Calculating averages
+- Counting occurrences
+- Creating objects from arrays
+- Grouping data
+- Performing cumulative calculations
+
+```javascript
+const numbers = [10, 20, 30, 40];
+
+const total = numbers.reduce((sum, number) => {
+    return sum + number;
+}, 0);
+
+console.log(total);
+// 100
+```
+
+Unlike `map()` and `filter()`, `reduce()` does not necessarily return an array. It can return any value, depending on the accumulator.
+
+---
+
+## 5. Comparison of forEach(), map(), filter(), and reduce()
+
+| Method | Primary Purpose | Return Value | Output Size |
+|---|---|---|---|
+| `forEach()` | Perform an operation on each element | `undefined` | No new array |
+| `map()` | Transform every element | New array | Usually same size |
+| `filter()` | Select elements based on a condition | New array | Same or smaller |
+| `reduce()` | Combine elements into one result | Single accumulated value | Usually one value |
+
+---
+
+## 6. Choosing the Appropriate Method
+
+The following decision rule can be used when selecting an array method:
+
+```text
+Perform an action for every element
+        ↓
+    forEach()
+
+Transform every element
+        ↓
+      map()
+
+Select some elements
+        ↓
+     filter()
+
+Combine elements into one result
+        ↓
+     reduce()
+```
+
+For example, consider the following array:
+
+```javascript
+const prices = [100, 200, 300, 400, 500];
+```
+
+### Perform an action
+
+```javascript
+prices.forEach(price => {
+    console.log(price);
+});
+```
+
+### Transform every element
+
+```javascript
+const pricesWithTax = prices.map(price => price * 1.10);
+```
+
+### Select specific elements
+
+```javascript
+const expensivePrices = prices.filter(price => price > 300);
+```
+
+### Calculate a single result
+
+```javascript
+const total = prices.reduce((sum, price) => sum + price, 0);
+```
+
+---
+
+## 7. Method Chaining
+
+These methods can also be combined when a problem requires multiple operations.
+
+For example, to select prices greater than `200`, increase them by `10%`, and calculate their total:
+
+```javascript
+const prices = [100, 200, 300, 400, 500];
+
+const total = prices
+    .filter(price => price > 200)
+    .map(price => price * 1.10)
+    .reduce((sum, price) => sum + price, 0);
+
+console.log(total);
+```
+
+In this operation:
+
+1. `filter()` selects the required elements.
+2. `map()` transforms the selected elements.
+3. `reduce()` combines the transformed elements into a single result.
+
+Method chaining can make data-processing operations concise and expressive when each operation has a clearly defined purpose.
+
+---
+
+## 8. Summary
+
+The choice of an array method should be based on the intended operation:
+
+- **`forEach()`** is used to perform an action on every element without producing a new array.
+- **`map()`** is used to transform every element and produce a new array.
+- **`filter()`** is used to select elements that satisfy a specified condition.
+- **`reduce()`** is used to combine multiple elements into a single accumulated result.
+
+Therefore, `forEach()` is primarily action-oriented, `map()` is transformation-oriented, `filter()` is selection-oriented, and `reduce()` is aggregation-oriented.
