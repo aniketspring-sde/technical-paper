@@ -4021,3 +4021,23 @@ The difference is that the first throws an **`Error` object**, whereas the secon
 Therefore:
 
 > **`throw new Error()` is the recommended way to throw errors in JavaScript.**
+
+## importance of catch block
+
+The catch block is used to handle an error thrown during program execution. It prevents the application from terminating unexpectedly and allows the program to respond appropriately.
+
+
+## Spread operator
+- The spread operator (...) is used to expand the elements of an iterable, such as an array or string, or the properties of an object, into another array, object, or function call.
+```
+Array Example
+const numbers = [1, 2, 3];
+
+const newNumbers = [...numbers, 4, 5];
+
+console.log(newNumbers);
+
+Output:
+
+[1, 2, 3, 4, 5]
+```
