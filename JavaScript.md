@@ -32,3 +32,116 @@
 
 ## Function hoisting
 - In JavaScript, function hoisting refers to calling a function before its declaration.
+
+## what happens when a function does not have a return statement
+- its return undefined.
+
+## different ways of declaring a function
+```javascript
+### Function Declaration
+
+
+function add(a, b) {
+    return a + b;
+}
+
+console.log(add(2, 3));
+
+
+### 2. Function Expression
+
+```md
+# Function Expression
+
+```javascript
+const add = function(a, b) {
+    return a + b;
+};
+
+console.log(add(2, 3));
+
+
+### 3. Arrow Function
+
+```md
+# Arrow Function
+
+```javascript
+const add = (a, b) => {
+    return a + b;
+};
+
+console.log(add(2, 3));
+
+
+### 4. Short Arrow Function
+
+```md
+# Short Arrow Function
+
+```javascript
+const add = (a, b) => a + b;
+
+console.log(add(2, 3));
+
+
+### 5. Named Function Expression
+
+```md
+# Named Function Expression
+
+```javascript
+const add = function addition(a, b) {
+    return a + b;
+};
+
+console.log(add(2, 3))
+
+```
+
+
+## different types of for loops - for with numbers, for..in, for..of, forEach, while
+### `for` Loop with Numbers
+```javascript
+for (let i = 1; i <= 5; i++) {
+    console.log(i);
+}
+```
+### `for...in` Loop
+```javascript
+const person = {
+    name: 'Aniket',
+    age: 32,
+    city: 'Bangalore'
+};
+
+for (const key in person) {
+    console.log(key);
+}
+```
+### `for...of` Loop
+```javascript
+const fruits = ['Apple', 'Banana', 'Mango'];
+
+for (const fruit of fruits) {
+    console.log(fruit);
+}
+```
+### `forEach()` Loop
+```javascript
+const fruits = ['Apple', 'Banana', 'Mango'];
+
+fruits.forEach(function (fruit) {
+    console.log(fruit);
+});
+```
+
+### `while` Loop
+```javascript
+let i = 1;
+
+while (i <= 5) {
+    console.log(i);
+    i++;
+}
+```
