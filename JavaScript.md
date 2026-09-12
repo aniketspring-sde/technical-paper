@@ -1367,3 +1367,971 @@ Think of it as:
 Filter → Map → Reduce
 Select → Transform → Combine
 ```
+
+
+# Popular String Utility Methods in JavaScript
+
+Strings are sequences of characters used to represent text.
+
+```javascript
+const message = "Hello JavaScript";
+```
+
+## Mutable vs Immutable
+
+JavaScript strings are **immutable**.
+
+This means once a string is created, its characters cannot be changed directly.
+
+String methods generally return a **new string** instead of modifying the original string.
+
+```javascript
+const name = "aniket";
+
+const result = name.toUpperCase();
+
+console.log(result);
+console.log(name);
+```
+
+Output:
+
+```text
+ANIKET
+aniket
+```
+
+The original string is unchanged.
+
+Therefore, the string methods covered below are **immutable**.
+
+---
+
+# Basics
+
+## 1. `String.toUpperCase()`
+
+Converts a string to uppercase.
+
+**Mutable:** No — Strings are immutable
+
+**Returns:** New string
+
+### Example
+
+```javascript
+const message = "hello world";
+
+const result = message.toUpperCase();
+
+console.log(result);
+```
+
+Output:
+
+```text
+HELLO WORLD
+```
+
+The original string remains unchanged:
+
+```javascript
+console.log(message);
+```
+
+Output:
+
+```text
+hello world
+```
+
+---
+
+## 2. `String.toLowerCase()`
+
+Converts a string to lowercase.
+
+**Mutable:** No — Strings are immutable
+
+**Returns:** New string
+
+### Example
+
+```javascript
+const message = "HELLO WORLD";
+
+const result = message.toLowerCase();
+
+console.log(result);
+```
+
+Output:
+
+```text
+hello world
+```
+
+---
+
+## 3. `String.trim()`
+
+Removes whitespace from the beginning and end of a string.
+
+**Mutable:** No
+
+**Returns:** New string
+
+### Example
+
+```javascript
+const message = "   Hello World   ";
+
+const result = message.trim();
+
+console.log(result);
+```
+
+Output:
+
+```text
+Hello World
+```
+
+It does not remove spaces between words.
+
+```javascript
+const message = "   Hello   World   ";
+
+console.log(message.trim());
+```
+
+Output:
+
+```text
+Hello   World
+```
+
+---
+
+## 4. `String.trimStart()`
+
+Removes whitespace from the beginning of a string.
+
+**Mutable:** No
+
+### Example
+
+```javascript
+const message = "   Hello World   ";
+
+const result = message.trimStart();
+
+console.log(result);
+```
+
+Output:
+
+```text
+Hello World   
+```
+
+---
+
+## 5. `String.trimEnd()`
+
+Removes whitespace from the end of a string.
+
+**Mutable:** No
+
+### Example
+
+```javascript
+const message = "   Hello World   ";
+
+const result = message.trimEnd();
+
+console.log(result);
+```
+
+Output:
+
+```text
+   Hello World
+```
+
+---
+
+# Searching
+
+## 6. `String.includes()`
+
+Checks whether a string contains a particular substring.
+
+**Mutable:** No
+
+**Returns:** `true` or `false`
+
+### Example
+
+```javascript
+const message = "JavaScript is easy";
+
+console.log(message.includes("JavaScript"));
+```
+
+Output:
+
+```text
+true
+```
+
+### Example
+
+```javascript
+console.log(message.includes("Python"));
+```
+
+Output:
+
+```text
+false
+```
+
+`includes()` is case-sensitive.
+
+```javascript
+console.log(message.includes("javascript"));
+```
+
+Output:
+
+```text
+false
+```
+
+---
+
+## 7. `String.indexOf()`
+
+Returns the index of the **first occurrence** of a substring.
+
+**Mutable:** No
+
+**Returns:** Index or `-1`
+
+### Example
+
+```javascript
+const message = "Hello JavaScript";
+
+const result = message.indexOf("JavaScript");
+
+console.log(result);
+```
+
+Output:
+
+```text
+6
+```
+
+### If not found
+
+```javascript
+console.log(message.indexOf("Python"));
+```
+
+Output:
+
+```text
+-1
+```
+
+---
+
+## 8. `String.lastIndexOf()`
+
+Returns the index of the **last occurrence** of a substring.
+
+**Mutable:** No
+
+**Returns:** Index or `-1`
+
+### Example
+
+```javascript
+const message = "JavaScript is easy and JavaScript is popular";
+
+const result = message.lastIndexOf("JavaScript");
+
+console.log(result);
+```
+
+Output:
+
+```text
+25
+```
+
+---
+
+## 9. `String.startsWith()`
+
+Checks whether a string starts with a particular substring.
+
+**Mutable:** No
+
+**Returns:** `true` or `false`
+
+### Example
+
+```javascript
+const message = "JavaScript is easy";
+
+console.log(message.startsWith("JavaScript"));
+```
+
+Output:
+
+```text
+true
+```
+
+```javascript
+console.log(message.startsWith("Python"));
+```
+
+Output:
+
+```text
+false
+```
+
+---
+
+## 10. `String.endsWith()`
+
+Checks whether a string ends with a particular substring.
+
+**Mutable:** No
+
+**Returns:** `true` or `false`
+
+### Example
+
+```javascript
+const fileName = "index.js";
+
+console.log(fileName.endsWith(".js"));
+```
+
+Output:
+
+```text
+true
+```
+
+---
+
+# Extracting Parts of a String
+
+## 11. `String.slice()`
+
+Extracts a portion of a string and returns a new string.
+
+**Mutable:** No
+
+**Returns:** New string
+
+### Syntax
+
+```javascript
+string.slice(start, end);
+```
+
+The `end` index is not included.
+
+### Example
+
+```javascript
+const message = "JavaScript";
+
+const result = message.slice(0, 4);
+
+console.log(result);
+```
+
+Output:
+
+```text
+Java
+```
+
+The original string remains unchanged.
+
+```javascript
+console.log(message);
+```
+
+Output:
+
+```text
+JavaScript
+```
+
+### Using negative indexes
+
+```javascript
+const message = "JavaScript";
+
+console.log(message.slice(-6));
+```
+
+Output:
+
+```text
+Script
+```
+
+---
+
+## 12. `String.substring()`
+
+Extracts characters between two indexes.
+
+**Mutable:** No
+
+**Returns:** New string
+
+### Example
+
+```javascript
+const message = "JavaScript";
+
+const result = message.substring(0, 4);
+
+console.log(result);
+```
+
+Output:
+
+```text
+Java
+```
+
+### `slice()` vs `substring()`
+
+```javascript
+const message = "JavaScript";
+
+console.log(message.slice(-6));
+console.log(message.substring(-6));
+```
+
+Output:
+
+```text
+Script
+JavaScript
+```
+
+`substring()` treats negative values as `0`, while `slice()` supports negative indexes.
+
+---
+
+# Replacing
+
+## 13. `String.replace()`
+
+Replaces the first matching substring.
+
+**Mutable:** No
+
+**Returns:** New string
+
+### Example
+
+```javascript
+const message = "I like Java";
+
+const result = message.replace("Java", "JavaScript");
+
+console.log(result);
+```
+
+Output:
+
+```text
+I like JavaScript
+```
+
+The original string is unchanged:
+
+```javascript
+console.log(message);
+```
+
+Output:
+
+```text
+I like Java
+```
+
+### Replacing the first occurrence
+
+```javascript
+const message = "Java is easy. Java is popular.";
+
+const result = message.replace("Java", "JavaScript");
+
+console.log(result);
+```
+
+Output:
+
+```text
+JavaScript is easy. Java is popular.
+```
+
+Only the first occurrence is replaced.
+
+---
+
+## 14. `String.replaceAll()`
+
+Replaces all matching occurrences.
+
+**Mutable:** No
+
+**Returns:** New string
+
+### Example
+
+```javascript
+const message = "Java is easy. Java is popular.";
+
+const result = message.replaceAll("Java", "JavaScript");
+
+console.log(result);
+```
+
+Output:
+
+```text
+JavaScript is easy. JavaScript is popular.
+```
+
+---
+
+# Splitting and Joining
+
+## 15. `String.split()`
+
+Splits a string into an array based on a separator.
+
+**Mutable:** No
+
+**Returns:** New array
+
+### Example
+
+```javascript
+const message = "JavaScript is easy";
+
+const result = message.split(" ");
+
+console.log(result);
+```
+
+Output:
+
+```text
+['JavaScript', 'is', 'easy']
+```
+
+### Splitting by comma
+
+```javascript
+const fruits = "Apple,Banana,Mango";
+
+const result = fruits.split(",");
+
+console.log(result);
+```
+
+Output:
+
+```text
+['Apple', 'Banana', 'Mango']
+```
+
+### Splitting every character
+
+```javascript
+const word = "Hello";
+
+console.log(word.split(""));
+```
+
+Output:
+
+```text
+['H', 'e', 'l', 'l', 'o']
+```
+
+---
+
+# Repeating and Padding
+
+## 16. `String.repeat()`
+
+Repeats a string a specified number of times.
+
+**Mutable:** No
+
+**Returns:** New string
+
+### Example
+
+```javascript
+const message = "Hi ";
+
+const result = message.repeat(3);
+
+console.log(result);
+```
+
+Output:
+
+```text
+Hi Hi Hi
+```
+
+---
+
+## 17. `String.padStart()`
+
+Adds characters to the beginning of a string until it reaches a specified length.
+
+**Mutable:** No
+
+**Returns:** New string
+
+### Example
+
+```javascript
+const number = "123";
+
+const result = number.padStart(5, "0");
+
+console.log(result);
+```
+
+Output:
+
+```text
+00123
+```
+
+---
+
+## 18. `String.padEnd()`
+
+Adds characters to the end of a string until it reaches a specified length.
+
+**Mutable:** No
+
+**Returns:** New string
+
+### Example
+
+```javascript
+const number = "123";
+
+const result = number.padEnd(5, "0");
+
+console.log(result);
+```
+
+Output:
+
+```text
+12300
+```
+
+---
+
+# Character Access
+
+## 19. `String.charAt()`
+
+Returns the character at a specified index.
+
+**Mutable:** No
+
+**Returns:** String character
+
+### Example
+
+```javascript
+const name = "Aniket";
+
+console.log(name.charAt(0));
+```
+
+Output:
+
+```text
+A
+```
+
+```javascript
+console.log(name.charAt(3));
+```
+
+Output:
+
+```text
+k
+```
+
+---
+
+## 20. `String.at()`
+
+Returns the character at a specified index.
+
+It also supports negative indexes.
+
+**Mutable:** No
+
+### Example
+
+```javascript
+const name = "Aniket";
+
+console.log(name.at(0));
+console.log(name.at(-1));
+```
+
+Output:
+
+```text
+A
+t
+```
+
+Negative indexing makes `at()` convenient for accessing characters from the end.
+
+---
+
+# Converting and Formatting
+
+## 21. `String.concat()`
+
+Combines strings and returns a new string.
+
+**Mutable:** No
+
+**Returns:** New string
+
+### Example
+
+```javascript
+const firstName = "Aniket";
+const lastName = "Kumar";
+
+const result = firstName.concat(" ", lastName);
+
+console.log(result);
+```
+
+Output:
+
+```text
+Aniket Kumar
+```
+
+However, template literals are generally easier to read:
+
+```javascript
+const result = `${firstName} ${lastName}`;
+
+console.log(result);
+```
+
+---
+
+# Length
+
+## 22. `String.length`
+
+Returns the number of characters in a string.
+
+**Mutable:** No
+
+**Returns:** Number
+
+### Example
+
+```javascript
+const name = "Aniket";
+
+console.log(name.length);
+```
+
+Output:
+
+```text
+6
+```
+
+`length` is a property, not a method.
+
+Therefore:
+
+```javascript
+name.length
+```
+
+is correct, not:
+
+```javascript
+name.length()
+```
+
+---
+
+# Quick Comparison
+
+| Method / Property | Purpose | Mutable? | Returns |
+|---|---|---:|---|
+| `toUpperCase()` | Convert to uppercase | No | New string |
+| `toLowerCase()` | Convert to lowercase | No | New string |
+| `trim()` | Remove whitespace from both ends | No | New string |
+| `trimStart()` | Remove beginning whitespace | No | New string |
+| `trimEnd()` | Remove ending whitespace | No | New string |
+| `includes()` | Check if substring exists | No | Boolean |
+| `indexOf()` | Find first occurrence | No | Index / `-1` |
+| `lastIndexOf()` | Find last occurrence | No | Index / `-1` |
+| `startsWith()` | Check beginning | No | Boolean |
+| `endsWith()` | Check ending | No | Boolean |
+| `slice()` | Extract part of string | No | New string |
+| `substring()` | Extract part of string | No | New string |
+| `replace()` | Replace first match | No | New string |
+| `replaceAll()` | Replace all matches | No | New string |
+| `split()` | Split string into array | No | New array |
+| `repeat()` | Repeat string | No | New string |
+| `padStart()` | Pad beginning | No | New string |
+| `padEnd()` | Pad ending | No | New string |
+| `charAt()` | Get character by index | No | String |
+| `at()` | Get character by index | No | String |
+| `concat()` | Combine strings | No | New string |
+| `length` | Get string length | No | Number |
+
+---
+
+# Important Point: Strings Are Immutable
+
+Unlike arrays, strings cannot be changed directly.
+
+For example:
+
+```javascript
+let name = "Aniket";
+
+name[0] = "B";
+
+console.log(name);
+```
+
+Output:
+
+```text
+Aniket
+```
+
+The character was not changed.
+
+Instead, create a new string:
+
+```javascript
+let name = "Aniket";
+
+name = "B" + name.slice(1);
+
+console.log(name);
+```
+
+Output:
+
+```text
+Bniket
+```
+
+The variable now refers to a new string.
+
+---
+
+# Common String Method Chaining
+
+String methods can also be chained.
+
+### Example
+
+```javascript
+const name = "   aniket kumar   ";
+
+const result = name
+    .trim()
+    .toUpperCase()
+    .replace("KUMAR", "SINGH");
+
+console.log(result);
+```
+
+Output:
+
+```text
+ANIKET SINGH
+```
+
+The operations happen from left to right:
+
+```text
+"   aniket kumar   "
+        ↓ trim()
+"aniket kumar"
+        ↓ toUpperCase()
+"ANIKET KUMAR"
+        ↓ replace()
+"ANIKET SINGH"
+```
+
+---
+
+# Easy Way to Remember
+
+```text
+toUpperCase() / toLowerCase() → Change case
+trim()                         → Remove outer spaces
+includes()                     → Check if present
+indexOf()                      → Find position
+startsWith() / endsWith()      → Check beginning/end
+slice()                        → Extract part
+replace() / replaceAll()       → Replace text
+split()                        → String → Array
+concat()                       → Combine strings
+repeat()                       → Repeat text
+padStart() / padEnd()          → Add padding
+charAt() / at()                → Get character
+length                         → Get size
+```
+
+## Key Point
+
+```text
+JavaScript Strings → Immutable
+```
+
+So, string methods do not modify the original string. They return a new string or another value.
