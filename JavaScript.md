@@ -4029,7 +4029,7 @@ The catch block is used to handle an error thrown during program execution. It p
 
 ## Spread operator
 - The spread operator (...) is used to expand the elements of an iterable, such as an array or string, or the properties of an object, into another array, object, or function call.
-```
+```javascript
 Array Example
 const numbers = [1, 2, 3];
 
