@@ -8,3 +8,15 @@
 - Null	: A value representing object absence
 - Symbol	: A unique primitive identifier
 - Object	: A collection of key-value pairs of data
+
+## scopes in javaScript.
+- Scope means the accessibility of variables.
+- There are 3 types of scope: Global scope, Function scope, and block scope.
+- Variables declared globally (outside any block or function) have Global Scope, and global variables can be accessed from anywhere in a JavaScript program.
+- Function scope: Variables defined inside a function are not accessible from outside the function.
+- Variables declared with let and const inside a code block are "block-scoped," meaning they are only accessible within that block.
+
+## let, var, const
+- let is used to declare variables with block scope. Its value can be changed later.
+- const is used to declare variables with block scope. The variable cannot be reassigned after initialization.
+- var is function-scoped, not global-scoped. If declared outside a function, it becomes global-scoped.
