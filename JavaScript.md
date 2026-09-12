@@ -20,3 +20,9 @@
 - let is used to declare variables with block scope. Its value can be changed later.
 - const is used to declare variables with block scope. The variable cannot be reassigned after initialization.
 - var is function-scoped, not global-scoped. If declared outside a function, it becomes global-scoped.
+
+## Why we must not use var.
+- Because var is not block-scoped, and it can be redeclared.
+## Why is using global variables bad?
+- Because any part of the program can access and modify them, which can cause readability, maintainability, debugging, and name-collision issues.
+## truthy and falsy values.
