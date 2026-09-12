@@ -3295,3 +3295,367 @@ const newNumbers = numbers.map(number => number * 2);
 ```
 
 Therefore, mutable methods should be used when modifying the existing array is intentional, while immutable methods are preferred when the original data should be preserved.
+
+
+# Error Handling Using `try...catch` in JavaScript
+
+Error handling is the process of detecting, managing, and responding to errors that occur during program execution. JavaScript provides the `try...catch` statement to handle runtime errors without causing the entire program to terminate unexpectedly.
+
+The `try...catch` mechanism consists primarily of two blocks:
+
+- **`try`** — contains code that may generate an error.
+- **`catch`** — contains code that handles the error.
+
+## 1. Basic Syntax
+
+```javascript
+try {
+    // Code that may produce an error
+} catch (error) {
+    // Code to handle the error
+}
+```
+
+If an error occurs inside the `try` block, JavaScript immediately stops executing the remaining statements in that block and transfers control to the `catch` block.
+
+### Example
+
+```javascript
+try {
+    const result = 10 / 0;
+
+    console.log(result);
+} catch (error) {
+    console.log('An error occurred');
+}
+```
+
+In this example, no exception is thrown because JavaScript produces `Infinity` when dividing a non-zero number by zero. Therefore, the `catch` block is not executed.
+
+A more appropriate example is:
+
+```javascript
+try {
+    const result = undefinedVariable;
+
+    console.log(result);
+} catch (error) {
+    console.log('An error occurred');
+}
+```
+
+Output:
+
+```text
+An error occurred
+```
+
+The reference to `undefinedVariable` produces a `ReferenceError`, which is handled by the `catch` block.
+
+---
+
+## 2. The `error` Object
+
+The `catch` block receives an error object that contains information about the error.
+
+```javascript
+try {
+    const result = undefinedVariable;
+} catch (error) {
+    console.log(error.name);
+    console.log(error.message);
+}
+```
+
+Typical output:
+
+```text
+ReferenceError
+undefinedVariable is not defined
+```
+
+Two commonly used properties are:
+
+- `error.name` — identifies the type of error.
+- `error.message` — describes the error.
+
+The complete error can also be displayed:
+
+```javascript
+try {
+    undefinedVariable;
+} catch (error) {
+    console.log(error);
+}
+```
+
+---
+
+## 3. `try...catch...finally`
+
+JavaScript also provides the `finally` block. The `finally` block executes after the `try` and `catch` blocks regardless of whether an error occurs.
+
+### Syntax
+
+```javascript
+try {
+    // Code that may produce an error
+} catch (error) {
+    // Error handling
+} finally {
+    // Code that always executes
+}
+```
+
+### Example
+
+```javascript
+try {
+    console.log('Executing try block');
+
+    undefinedVariable;
+} catch (error) {
+    console.log('Error handled');
+} finally {
+    console.log('Finally block executed');
+}
+```
+
+Output:
+
+```text
+Executing try block
+Error handled
+Finally block executed
+```
+
+The `finally` block is commonly used for cleanup operations such as closing resources or resetting application state.
+
+---
+
+## 4. Throwing Custom Errors
+
+JavaScript allows developers to explicitly generate an error using the `throw` statement.
+
+```javascript
+function withdraw(amount) {
+    if (amount <= 0) {
+        throw new Error('Amount must be greater than zero');
+    }
+
+    console.log('Withdrawal successful');
+}
+
+try {
+    withdraw(-100);
+} catch (error) {
+    console.log(error.message);
+}
+```
+
+Output:
+
+```text
+Amount must be greater than zero
+```
+
+The `throw` statement transfers control from the current execution context to the nearest applicable `catch` block.
+
+---
+
+## 5. Handling Different Types of Errors
+
+JavaScript provides several built-in error types, including:
+
+- `Error`
+- `SyntaxError`
+- `ReferenceError`
+- `TypeError`
+- `RangeError`
+- `URIError`
+
+For example:
+
+```javascript
+try {
+    const number = 10;
+    number.toUpperCase();
+} catch (error) {
+    console.log(error.name);
+    console.log(error.message);
+}
+```
+
+Output:
+
+```text
+TypeError
+number.toUpperCase is not a function
+```
+
+---
+
+## 6. Error Handling with Functions
+
+Errors generated inside a function can be handled by a `try...catch` block outside the function.
+
+```javascript
+function divide(a, b) {
+    if (b === 0) {
+        throw new Error('Cannot divide by zero');
+    }
+
+    return a / b;
+}
+
+try {
+    const result = divide(10, 0);
+    console.log(result);
+} catch (error) {
+    console.log(error.message);
+}
+```
+
+Output:
+
+```text
+Cannot divide by zero
+```
+
+This approach separates the responsibility of **detecting an error** from the responsibility of **handling the error**.
+
+---
+
+## 7. Error Handling with JSON Parsing
+
+A common practical use of `try...catch` is handling invalid JSON.
+
+```javascript
+const jsonData = '{"name": "Aniket", "age": 32}';
+
+try {
+    const user = JSON.parse(jsonData);
+
+    console.log(user);
+} catch (error) {
+    console.log('Invalid JSON');
+}
+```
+
+If invalid JSON is provided:
+
+```javascript
+const jsonData = '{"name": "Aniket", "age": }';
+
+try {
+    const user = JSON.parse(jsonData);
+
+    console.log(user);
+} catch (error) {
+    console.log('Invalid JSON');
+}
+```
+
+Output:
+
+```text
+Invalid JSON
+```
+
+---
+
+## 8. Error Handling with `async/await`
+
+`try...catch` is also commonly used with `async/await` to handle errors from asynchronous operations.
+
+```javascript
+async function fetchData() {
+    try {
+        const response = await fetch('https://example.com/data');
+
+        const data = await response.json();
+
+        console.log(data);
+    } catch (error) {
+        console.log('Failed to fetch data');
+        console.log(error.message);
+    }
+}
+```
+
+If the asynchronous operation rejects or an error occurs while processing the response, control is transferred to the `catch` block.
+
+---
+
+## 9. Important Characteristics
+
+### `try`
+
+Contains code that may throw an exception.
+
+### `catch`
+
+Handles an exception thrown from the associated `try` block.
+
+### `finally`
+
+Executes regardless of whether an exception occurs.
+
+### `throw`
+
+Explicitly generates an exception.
+
+---
+
+## 10. Execution Flow
+
+The execution flow of `try...catch` can be represented as follows:
+
+```text
+        Start
+          |
+          v
+     Execute try
+          |
+       Error?
+       /     \
+     No       Yes
+     |         |
+     v         v
+ Continue    catch
+     |         |
+     |         v
+     |      finally
+     |         |
+      \       /
+       v     v
+        End
+```
+
+If no error occurs, the `catch` block is skipped.
+
+If an error occurs, the remaining statements in the `try` block are skipped and the `catch` block is executed.
+
+The `finally` block executes in either case.
+
+---
+
+## 11. Summary
+
+`try...catch` provides a structured mechanism for handling runtime exceptions in JavaScript. The `try` block contains potentially unsafe code, while the `catch` block handles errors generated during its execution. The optional `finally` block is used for operations that must execute regardless of whether an error occurs. The `throw` statement allows developers to generate custom exceptions when application-specific conditions are violated.
+
+```text
+try
+    → Execute potentially failing code
+
+catch
+    → Handle the error
+
+finally
+    → Execute cleanup code
+
+throw
+    → Generate an error explicitly
+```
+
+Effective error handling improves application reliability, prevents unexpected termination, and provides a controlled mechanism for responding to exceptional conditions.
