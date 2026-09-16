@@ -1552,3 +1552,9 @@ The major Promise concepts are:
 - `async/await` provides a cleaner syntax for consuming promises.
 
 Understanding the relationship between the **call stack, runtime APIs, queues, event loop, callbacks, and promises** is essential before moving to more advanced asynchronous JavaScript programming.
+
+
+### References:
+- MDN Web Docs
+- w3school
+- tutorialpoint
